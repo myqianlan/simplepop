@@ -59,7 +59,7 @@ var SimplePop = {
 		duration: "normal",
 		showTitle: true,
 		escClose: true,
-		masksClose: false,
+		popMaskClose: false,
 		drag: true,
 		dragOpacity: 1,
 		popType: "alert",
@@ -67,17 +67,17 @@ var SimplePop = {
 	},
 	_creatLayer: function(opt) {
 		var self = this;
-		$(".masks").empty().remove();
+		$(".popMask").empty().remove();
 		$(".popMain").empty().remove();
-		$("body").append("<div class='masks'></div>");
-		var $mask = $(".masks");
+		$("body").append("<div class='popMask'></div>");
+		var $mask = $(".popMask");
 		$mask.css({
 			"background-color": opt.background,
 			filter: "alpha(opacity=" + opt.opacity * 100 + ")",
 			"-moz-opacity": opt.opacity,
 			opacity: opt.opacity
 		});
-		opt.masksClose &&
+		opt.popMaskClose &&
 			$mask.bind("click", function() {
 				self._closeLayer()
 			});
