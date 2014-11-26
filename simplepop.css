@@ -5,17 +5,16 @@
     top: 0;
     left: 0;
     display: none;
-    _position: absolute;
-    _clear: both;
-    _top: expression(eval(document.compatMode &&    document.compatMode=='CSS1Compat') ?    documentElement.scrollTop    +(documentElement.clientHeight-this.clientHeight) - 1    : document.body.scrollTop    +(document.body.clientHeight-this.clientHeight) - 1);
 }
 
 .popMain {
     position: fixed;
-    _position: absolute;
     overflow: hidden;
     display: none;
     font-size: 12px;
+    border-radius: 4px;
+    *width: 320px;
+
 }
 
 .popTitle {
@@ -23,11 +22,12 @@
     height: 28px;
     line-height: 28px;
     display: none;
+    overflow: auto;
 }
 
 .popTitle .text {
     float: left;
-    margin-left: 6px;
+    margin-left: 12px;
 }
 
 .popTitle .icon {
@@ -39,12 +39,13 @@
 
 .popTitle .close {
     float: right;
-    margin: 0px 13px;
-    width: 10px;
-    height: 10px;
+    margin: 0px 12px;
     font-weight: 900;
     font-size: 16px;
     cursor: pointer;
+}
+.popTitle .close:hover{
+color: #ddd;
 }
 
 .popContent {

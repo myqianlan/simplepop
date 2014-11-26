@@ -1,8 +1,12 @@
 /* *
- * @author myiqnlan
+ * jQuery SimplePop
+ * IE 8+ ,but work in IE7
  * @date 2014-11-24 13:19:36
- *
+ * https://github.com/myqianlan/SimplePop
+ * Copyright 2014 myiqnlan
+ * Released under the MIT license
  * */
+ 
 "use strict";
 var SimplePop = {
 	alert: function(msg, arg) {
@@ -11,7 +15,7 @@ var SimplePop = {
 			title: "提示",
 			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button></div></div>",
 			callback: function() {
-				console.log("you click sure")
+				
 			}
 		};
 		var opt = $.extend({}, this._defaults, alertDefaults, arg);
@@ -23,10 +27,10 @@ var SimplePop = {
 			title: "请选择",
 			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div></div>",
 			cancel: function() {
-				console.log("cancel")
+				
 			},
 			confirm: function() {
-				console.log("confirm")
+				
 			}
 		};
 		var opt = $.extend({}, this._defaults, confirmDefaults, arg);
@@ -38,10 +42,10 @@ var SimplePop = {
 			title: "请输入",
 			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div><input type='text' /></div><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div></div>",
 			cancel: function() {
-				console.log("cancel")
+				
 			},
 			confirm: function(value) {
-				console.log(value)
+				
 			}
 		};
 		var opt = $.extend({}, this._defaults, promptDefaults, arg);
