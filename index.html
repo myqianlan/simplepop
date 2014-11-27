@@ -2,106 +2,88 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <title>SimplePop</title>
-    <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+    <title>SimplePop</title>  
     <link rel="stylesheet" href="simplepop.css">
     <link rel="stylesheet" href="main.css">
-    <script src="simplepop.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script src="jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="simplepop.js"></script>
+    <script>
         $(function () {
             $("#btnAlert").click(function () {
- SimplePop.alert("这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹这是弹出信息")
+                SimplePop.alert("你看到的是SimplePop");
             });
-            $("#btnRight").click(function () {
-                $.right();
-            });
-            $("#btnError").click(function () {
-                $.error();
-            });
-            $("#btnConfirm").click(function () {
-                $.confirm({
-                    callback: function (result) {
-                        if (result) {
-                            alert("您选择了\"确定\"");
-                        }
-                        else {
-                            alert("您选择了\"取消\"");
-                        }
+            $("#btnPrompt").click(function () {
+                 SimplePop.prompt("你看到的是SimplePop",{
+                    type: "confirm",
+                    cancel: function(){
+                        alert("cancle");
+                    },
+                    confirm: function(msg){
+                        alert(msg);
                     }
                 });
             });
-            $("#btnContainer").click(function () {
-                $.container({
-                    targetId: "#div1",
-                    width: 300,
-                    height: 200
+            $("#btnConfirm").click(function () {
+                SimplePop.confirm("你看到的是SimplePop",{
+                    type: "error",
+                    cancel: function(){
+                        alert("cancle");
+                    },
+                    confirm: function(){
+                        alert("confirm");
+                    }
                 });
             });
-            $("#btnFrame").click(function () {
-                $.frame({
-                    pageUrl: "http://www.baidu.com/",
-                    width: 700,
-                    height: 500
-                });
-            });
-            $("#btnCustom").click(function () {
-                $.custom({
-                    content: "<div style='text-align: center;'>hello lyz!</div>",
-                    width: 150,
-                    height: 100
-                });
-            });
+            
         });
     </script>
 </head>
 <body>
-    <h1>SimplePop弹层插件API</h1>
-    <div id="div1">
-        <div class="PopContainer">
-            这是一个用于弹出的层
-            <br />
-            <br />
-            <br />
-            <a onclick="CloseLayer();">关闭</a>
-        </div>
-    </div>
+    <h1>SimplePop弹层插件API（兼容IE7+）</h1>
     <table class='table'>
         <caption>实例演示</caption>
         <tr align='center'>
             <th width="120">示例</th>
             <th>最简洁的调用</th>
-            <th>备注</th>
         </tr>
         <tr>
             <td class="example">
                 <button id="btnAlert" type="button">提示信息</button>
             </td>
-            <td class='code'>$.alert({ msg: "这是调用$.alert弹出信息" });</td>
-            <td class="remark">专有属性：msg(可选)、callback(可选)</td>
+            <td class='code'> SimplePop.alert("你看到的是SimplePop");</td>
         </tr>
         <tr>
             <td class="example">
-                <button id="btnRight" type="button">成功信息</button>
+                <button id="btnPrompt" type="button">输入框</button>
             </td>
-            <td class='code'>$.right();</td>
-            <td class="remark">专有属性：msg(可选)、callback(可选)</td>
-        </tr>
-        <tr>
-            <td class="example">
-                <button id="btnError" type="button">错误信息</button>
+            <td class='code'>
+                SimplePop.prompt("你看到的是SimplePop",{
+                    type: "confirm",
+                    cancel: function(){
+                        alert("cancle");
+                    },
+                    confirm: function(msg){
+                        alert(msg);
+                    }
+                });
+            });
             </td>
-            <td class='code'>$.error();</td>
-            <td class="remark">专有属性：msg(可选)、callback(可选)</td>
         </tr>
+        
         <tr>
             <td class="example">
                 <button id="btnConfirm" type="button">询问信息</button>
             </td>
             <td class='code'>
-                $.confirm({ callback: function (result) { if (result) { alert("您选择了\"确定\""); } else
-                { alert("您选择了\"取消\""); } } });
+                SimplePop.confirm("你看到的是SimplePop",{
+                    cancel: function(){
+                        alert("cancle");
+                    },
+                    confirm: function(){
+                        alert("confirm");
+                    }
+                });
             </td>
-            <td class="remark">专有属性：msg(可选)、callback(可选)</td>
         </tr>
 
 
@@ -116,6 +98,10 @@
         <tr>
             <td class="example">icon</td>
             <td class="remark">弹出的标题图标(图标路径)</td>
+        </tr>
+        <tr>
+            <td class="example">type</td>
+            <td class="remark">显示的内容图标类型，默认为“info”</td>
         </tr>
         <tr>
             <td class="example">title</td>
@@ -169,7 +155,11 @@
         </tr>
         <tr>
             <td class="example">drag</td>
-            <td class="remark">是否可以拖动弹层(暂不支持IE6，默认：false)</td>
+            <td class="remark">是否可以拖动弹层(默认：true)</td>
+        </tr>
+        <tr>
+            <td class="example">content</td>
+            <td class="remark">自定义内容区域</td>
         </tr>
     </table>
     <table class='table'>
@@ -179,9 +169,9 @@
             <th>说明</th>
         </tr>
         <tr>
-            <td class="example">CloseLayer();</td>
+            <td class="example">closeSimplePop();</td>
             <td class="remark">
-                调用关闭弹层，一般用于弹出层内触发关闭调用(如果$.frame()里的页面内调用，则为：window.parent.CloseLayer();)
+                调用关闭弹层
             </td>
         </tr>
     </table>
@@ -196,5 +186,6 @@
             <td class="remark">该插件基于jquery1.11.1框架开发，请在调用前务必先引用合适文件</td>
         </tr>
     </table>
+    <a href="https://github.com/myqianlan/SimplePop"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 </body>
 </html>

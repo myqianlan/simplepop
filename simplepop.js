@@ -1,6 +1,6 @@
 /* *
  * jQuery SimplePop
- * IE 8+ ,but work in IE7
+ * IE 7+
  * @date 2014-11-24 13:19:36
  * https://github.com/myqianlan/SimplePop
  * Copyright 2014 myiqnlan
@@ -13,7 +13,7 @@ var SimplePop = {
 		var alertDefaults = {
 			popType: "alert",
 			title: "提示",
-			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button></div></div>",
+			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><button id='simplePopBtnSure' type='button'>确定</button></div>",
 			callback: function() {
 				
 			}
@@ -25,7 +25,7 @@ var SimplePop = {
 		var confirmDefaults = {
 			popType: "confirm",
 			title: "请选择",
-			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div></div>",
+			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div>",
 			cancel: function() {
 				
 			},
@@ -40,7 +40,7 @@ var SimplePop = {
 		var promptDefaults = {
 			popType: "prompt",
 			title: "请输入",
-			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div><input type='text' /></div><div class='btn_box'><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div></div>",
+			content: "<div class='layer_msg'><p>" + (msg === undefined ? "" : msg) + "</p><div><input type='text' /></div><button id='simplePopBtnSure' type='button'>确定</button><button id='SimplePopBtncancel' type='button'>取消</button></div>",
 			cancel: function() {
 				
 			},
@@ -51,6 +51,9 @@ var SimplePop = {
 		var opt = $.extend({}, this._defaults, promptDefaults, arg);
 		this._creatLayer(opt)
 
+	},
+	closeSimplePop: function() {
+		this._closeLayer();
 	},
 	_defaults: {
 		icon: "",
@@ -95,7 +98,7 @@ var SimplePop = {
 		$mask.fadeIn(opt.duration);
 		var wrap = "<div class='popMain'>";
 		wrap += "<div class='popTitle'>" + (opt.icon !== undefined && opt.icon !== "" ? "<img class='icon' src='" +
-			opt.icon + "' />" : "") + "<span class='text'>" + opt.title + "</span><a class='close'>&times;</a></div>";
+			opt.icon + "' />" : "") + "<span class='text'>" + opt.title + "</span><span class='close'>&times;</span></div>";
 		wrap += "<div class='popContent'>" + opt.content + "</div>";
 		wrap += "</div>";
 		$("body").append(wrap);
