@@ -1,4 +1,6 @@
-﻿.popMask {
+﻿@charset "utf-8";
+$icon_path: "images";
+.popMask {
     position: fixed;
     top: 0;
     left: 0;
@@ -6,7 +8,6 @@
     width: 100%;
     height: 100%;
 }
-
 .popMain {
     position: fixed;
     overflow: hidden;
@@ -14,16 +15,16 @@
     font-size: 12px;
     border-radius: 4px;
     .info_icon {
-        background: #fff url(images/info.gif) no-repeat 0 50%;
+        background: #fff url(#{$icon_path}/info.gif) no-repeat 0 50%;
     }
     .right_icon {
-        background: #fff url(images/right.gif) no-repeat 0 50%;
+        background: #fff url(#{$icon_path}/right.gif) no-repeat 0 50%;
     }
     .error_icon {
-        background: #fff url(images/error.gif) no-repeat 0 50%;
+        background: #fff url(#{$icon_path}/error.gif) no-repeat 0 50%;
     }
     .confirm_icon {
-        background: #fff url(images/confirm.gif) no-repeat 0 50%;
+        background: #fff url(#{$icon_path}/confirm.gif) no-repeat 0 50%;
     }
 }
 

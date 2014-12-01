@@ -8,8 +8,6 @@ var gulp = require('gulp');
 // 包含插件   
 // sass 编译
 var sass = require('gulp-sass');
-//sourcemaps
-var sourcemaps = require('gulp-sourcemaps');
 // 压缩JS
 var uglify = require('gulp-uglify');
 // 压缩CSS
@@ -23,11 +21,9 @@ var autoprefixer = require('gulp-autoprefixer');
 // with node sass
 gulp.task('sass', function() {
     gulp.src('./simplepop.scss')
-        .pipe(sourcemaps.init())
         .pipe(sass({
             errLogToConsole: true
         }))
-        .pipe(sourcemaps.write('./',{debug: true, includeContent: false}))
         .pipe(gulp.dest('./'));
 });
 
@@ -55,10 +51,10 @@ gulp.task('minifycss', function() {
         .pipe(gulp.dest('./'));
 });
 //
-gulp.task('dev', ['sass'], function() {
+gulp.task('dev', ['sass','autoprefixer'], function() {
     // 监视scss文件的变化,并且执行sass
     // 如果scss文件夹为空，任务会中断
-    gulp.watch('./simplepop.scss', ['sass']);
+    gulp.watch('./simplepop.scss', ['sass','autoprefixer']);
 });
 
 // 默认任务   
