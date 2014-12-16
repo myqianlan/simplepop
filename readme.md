@@ -1,7 +1,7 @@
 ##SimplePop
 ---
 ###简介
-一个用来替换浏览器原生弹出框的jquery插件，非常小巧，可定制度高,查看[DEMO](http://www.myqianlan.com/SimplePop/ "").
+一个用来替换浏览器原生弹出框的jquery插件，非常小巧，可定制度高,查看[DEMO](http://www.myqianlan.com/simplepop/ "").
 ###使用方法
 - 引入
 
@@ -17,7 +17,7 @@
     ```
 - 文档
 
-    更多详细参数请移步这里http://www.myqianlan.com/SimplePop/ 
+    更多详细参数请移步这里http://www.myqianlan.com/simplepop/ 
     
 ###License
 MIT
